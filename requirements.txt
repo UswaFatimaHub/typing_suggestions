@@ -1,0 +1,7 @@
+fastapi 
+uvicorn
+symspellpy
+pymongo
+beautifulsoup4
+transformers 
+torch
