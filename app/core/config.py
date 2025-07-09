@@ -1,8 +1,13 @@
 from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-MONGO_URI ="mongodb+srv://muhammadawais:vkl1Phd92yEJLHOR@cluster0.0wi6ueg.mongodb.net/"
-DB_NAME = "traction-stage"
-COLLECTION_NAME = "articles"
+# Read values from environment variables
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME", "traction-stage")  # Default value fallback
+COLLECTION_NAME = os.getenv("COLLECTION_NAME", "articles")
+
 
 client = MongoClient(MONGO_URI)
 db = client[DB_NAME]
