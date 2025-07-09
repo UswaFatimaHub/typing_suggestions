@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import os
 
@@ -27,7 +28,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/", response_class=HTMLResponse)
-def serve_homepage():
-    with open(os.path.join(static_path, "index.html")) as f:
-        return f.read()
+# @app.get("/", response_class=HTMLResponse)
+# def serve_homepage():
+#     with open(os.path.join(static_path, "index.html")) as f:
+#         return f.read()
+
+# Redirect "/" to Swagger docs
+@app.get("/", include_in_schema=False)
+def redirect_to_docs():
+    return RedirectResponse(url="/docs")

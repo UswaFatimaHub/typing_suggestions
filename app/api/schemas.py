@@ -21,7 +21,7 @@ class AutocompleteRequest(BaseModel):
 
 class Suggestion(BaseModel):
     word: str
-    score: int
+    # score: int
 
 class AutocompleteResponse(BaseModel):
     prefix: str

@@ -104,7 +104,7 @@
 
         comboInput.addEventListener("input", debounce(() => {
         fetchComboSuggestions(comboInput.value);
-        }, 300));
+        }, 1000));
 
         // === Typo-Only Handler ===
         const typoOnlyInput = document.getElementById("typoOnlyInput");

@@ -4,7 +4,12 @@ from app.api.schemas import WordSuggestion
 
 # Load SymSpell only once
 sym_spell = SymSpell(max_dictionary_edit_distance=2, prefix_length=7)
-sym_spell.load_dictionary("frequency_dictionary.txt", term_index=0, count_index=1)
+# Load flat dictionary with fake frequencies
+if not sym_spell.load_dictionary("medical_frequency.txt", term_index=0, count_index=1):
+    raise RuntimeError("Failed to load dictionary. Check frequency_dictionary.txt")
+if not sym_spell.load_dictionary("frequency_dictionary_en_82_765.txt", term_index=0, count_index=1):
+    raise RuntimeError("Failed to load dictionary. Check frequency_dictionary_en_82_765.txt")
+
 
 def suggest_word(word: str):
     if word.isupper() or re.match(r"[A-Z][a-z]+", word):
